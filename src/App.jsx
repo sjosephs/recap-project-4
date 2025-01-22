@@ -8,7 +8,7 @@ function App() {
       <h1>Theme Creator</h1>
 
       {initialColors.map((color) => {
-        return <Color key={color.id} color={color} />;
+        return <Color key={color.id} color={color} />; // calls the Color Component with a unique key
       })}
     </>
   );
