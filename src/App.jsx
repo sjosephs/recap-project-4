@@ -9,14 +9,22 @@ function App() {
   const [colors, setColors] = useState(initialColors);
 
   function handleAddColor(newColor) {
-    setColors([...colors, { id: nanoid(), ...newColor }]);
+    setColors([{ id: nanoid(), ...newColor }, ...colors]);
+  }
+
+  function handleDeleteColor(id) {
+    const newColors = colors.filter((color) => color.id !== id);
+    setColors(newColors);
   }
   return (
     <>
       <h1>Theme Creator</h1>
       <ColorForm onSubmitColor={handleAddColor} />
+      {colors.length < 1 && <h4>No colors. Start by adding one!</h4>}
       {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
+        return (
+          <Color key={color.id} color={color} onDelete={handleDeleteColor} />
+        );
       })}
     </>
   );
