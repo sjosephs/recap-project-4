@@ -21,13 +21,15 @@ export default function Color({ color, onDelete }) {
         <>
           <div className="color-card-headline">Really delete?</div>
           <button onClick={() => setShowMessage(false)}>CANCEL</button>
-          {/* when cancel is clicked, onClicking event will trigger the arrow function and change state to false */}
-          <button onClick={() => onDelete(color.id)}>ConfirmDELETE</button>
-          {/* */}
+          {/* when cancel is clicked, onClicking event will trigger the arrow function 
+          and change state to false */}
+          <button onClick={() => onDelete(color.id)}>DELETE</button>
         </>
       ) : (
         <button onClick={() => setShowMessage(true)}>DELETE</button>
-        {/* Delete button triggers onclick function, executes the arrow function, updates/ changes state to true and jumps to the above condition to be executed.*/}
+        /* Delete button triggers onclick function, 
+        executes the arrow function, updates/ changes state to true and 
+        jumps to the above condition to be executed.  */
       )}
     </div>
   );
