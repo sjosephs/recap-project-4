@@ -1,16 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Color.css";
 import ColorForm from "../ColorForm/ColorForm";
 
 export default function Color({ color, onDelete, onEditColor }) {
   const [showMessage, setShowMessage] = useState(false); //state for the confirmation messsage mainly to states of Cancel and delete
   const [isEdit, setIsEdit] = useState(false); //state to State to track the updated color details while editing
+  const [hasCopied, setHasCopied] = useState(false);
 
   //Finds the color by its ID and updates it with new data.
   function handleEditColor(currColor) {
     onEditColor(color.id, currColor); //gives back the new updated color with the original ID
     setIsEdit(false); // will exit Edit mode
   }
+
+  async function writeClipboardText() {
+    try {
+      await navigator.clipboard.writeText(color.hex);
+      setHasCopied(true);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => setHasCopied(false), 3000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [hasCopied]);
 
   return (
     <div
@@ -21,6 +39,11 @@ export default function Color({ color, onDelete, onEditColor }) {
       }}
     >
       <h3 className="color-card-headline">{color.hex}</h3>
+      {hasCopied ? (
+        <div className="color-card-confirmation">Succesfully copied!</div>
+      ) : (
+        <button onClick={writeClipboardText}>COPY</button>
+      )}
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
 
