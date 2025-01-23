@@ -14,7 +14,6 @@ export default function ColorForm({ onSubmitColor }) {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <h2>Theme Creator</h2>
       <div className="form__fields">
         <div className="form__field">
           <label className="form__label" htmlFor="role">
