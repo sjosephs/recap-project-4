@@ -3,9 +3,9 @@ import "./Color.css";
 import ColorForm from "../ColorForm/ColorForm";
 
 export default function Color({ color, onDelete, onEditColor }) {
-  const [showMessage, setShowMessage] = useState(false); //state for the confirmation messsage mainly to states of Cancel and delete
-  const [isEdit, setIsEdit] = useState(false); //state to State to track the updated color details while editing
-  const [hasCopied, setHasCopied] = useState(false);
+  const [showMessage, setShowMessage] = useState(false); //Tracks if the delete confirmation is shown
+  const [isEdit, setIsEdit] = useState(false); //trackks if card is in edit mode
+  const [hasCopied, setHasCopied] = useState(false); //Tracks if the hex value has been successfully copied.
 
   //Finds the color by its ID and updates it with new data.
   function handleEditColor(currColor) {
