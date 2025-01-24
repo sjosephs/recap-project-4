@@ -3,7 +3,7 @@ import "./Color.css";
 import ColorForm from "../ColorForm/ColorForm";
 
 export default function Color({ color, onDelete, onEditColor }) {
-  const [showMessage, setShowMessage] = useState(false); //Tracks if the delete confirmation is shown
+  const [showMessage, setShowMessage] = useState(false); //Tracks if the delete confirmation is displayed.
   const [isEdit, setIsEdit] = useState(false); //trackks if card is in edit mode
   const [hasCopied, setHasCopied] = useState(false); //Tracks if the hex value has been successfully copied.
 
@@ -15,7 +15,7 @@ export default function Color({ color, onDelete, onEditColor }) {
 
   async function writeClipboardText() {
     try {
-      await navigator.clipboard.writeText(color.hex);
+      await navigator.clipboard.writeText(color.hex); //write the color.hex value to the system clipboard using the Clipboard API's writeText method.
       setHasCopied(true);
     } catch (error) {
       console.error(error.message);
@@ -50,11 +50,7 @@ export default function Color({ color, onDelete, onEditColor }) {
       {/* UPDATE+CANCEL_EDIT */}
       {isEdit && !showMessage && (
         <>
-          <ColorForm
-            colorToUpdate={color}
-            onEditColor={handleEditColor}
-            onCancel={() => setIsEdit(false)}
-          />
+          <ColorForm colorToUpdate={color} onEditColor={handleEditColor} />
           <button
             onClick={() => {
               setIsEdit(false);

@@ -25,6 +25,7 @@ export default function ColorForm({
     //console.log("Event:", event.target);
 
     event.target.reset();
+    event.target.role.focus();
   }
 
   function handleInputValue(event) {
